@@ -57,9 +57,9 @@ public class LottoController {
 
     public WinningLotto createWinningLotto(){
         List<Integer> winningNumbers = askWinningNumber();
-        int bonusNumber = askBonusNumber(winningNumbers);
-
         Lotto winningLotto = new Lotto(winningNumbers);
+
+        int bonusNumber = askBonusNumber();
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
@@ -68,7 +68,7 @@ public class LottoController {
         return inputHandler.checkWinningNumberInput(input);
     }
 
-    private int askBonusNumber(List<Integer> winningNumbers) {
+    private int askBonusNumber() {
         String input = inputView.askBonusNumber();
         return inputHandler.checkBonusNumber(input);
     }
