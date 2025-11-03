@@ -3,12 +3,12 @@ package controller;
 import domain.Lotto;
 import domain.LottoResult;
 import domain.Lottos;
+import domain.Price;
 import domain.WinningLotto;
 import java.util.List;
 import model.LottoGenerator;
 import model.LottoMatcher;
 import utils.InputHandler;
-import utils.LottoValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -45,9 +45,9 @@ public class LottoController {
 
     public int askPrice(){
         String input = inputView.askPrice();
-        int price = inputHandler.checkPrice(input);
-        LottoValidator.validatePrice(price);
-        return price;
+        int priceValue = inputHandler.checkPrice(input);
+        Price price = new Price(priceValue);
+        return price.getPrice();
     }
 
     public Lottos createLottos(int price){
