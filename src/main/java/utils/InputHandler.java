@@ -13,16 +13,12 @@ public class InputHandler {
 
     public int checkPrice(String input){
         isInputEmpty(input);
-        int price = checkIntegerInput(input);
-        checkNegativeNumber(price);
-        return price;
+        return checkIntegerInput(input);
     }
 
     public int checkBonusNumber(String input){
         isInputEmpty(input);
-        int bonusNumber = checkIntegerInput(input);
-        checkNegativeNumber(bonusNumber);
-        return bonusNumber;
+        return checkIntegerInput(input);
     }
 
     public List<Integer> checkWinningNumberInput(String input){
@@ -62,12 +58,6 @@ public class InputHandler {
             return winningNumber;
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
-        }
-    }
-
-    public void checkNegativeNumber(int input){
-        if (input < 0){
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER_INPUT.getMessage());
         }
     }
 }
