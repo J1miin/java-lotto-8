@@ -3,6 +3,7 @@ package model;
 import domain.Lotto;
 import domain.Lottos;
 import constants.LottoConstants;
+import domain.Price;
 
 public class ConcreteLottoGenerator implements LottoGenerator {
     private int totalLottoAmount;
@@ -15,7 +16,7 @@ public class ConcreteLottoGenerator implements LottoGenerator {
     }
 
     @Override
-    public void createLottoSet(int price){
+    public void createLottoSet(Price price){
         findTotalLottoAmount(price);
 
         for (int i = 0 ; i < totalLottoAmount; ++i){
@@ -25,8 +26,8 @@ public class ConcreteLottoGenerator implements LottoGenerator {
     }
 
     @Override
-    public void findTotalLottoAmount(int price) {
-        this.totalLottoAmount = price / LottoConstants.LOTTO_PRICE_UNIT ;
+    public void findTotalLottoAmount(Price price) {
+        this.totalLottoAmount = price.getPrice() / LottoConstants.LOTTO_PRICE_UNIT ;
     }
 
     @Override
