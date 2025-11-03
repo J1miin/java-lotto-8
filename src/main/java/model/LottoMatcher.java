@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMatcher {
-    private Map<Rank, Integer> results = new HashMap<>();
 
     public LottoResult match(List<Lotto> lottos, WinningLotto winningLotto) {
         Map<Rank, Integer> results = new HashMap<>();
