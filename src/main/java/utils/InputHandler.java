@@ -1,8 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.List;
-import view.OutputView;
 
 public class InputHandler {
     private final InputParser inputParser;
@@ -11,33 +9,24 @@ public class InputHandler {
         this.inputParser = inputParser;
     }
 
-    public int checkPrice(String input){
-        isInputEmpty(input);
-        return checkIntegerInput(input);
+    public int validateInteger(String input){
+        validateEmptyOrNot(input);
+        return parseIntoIntegers(input);
     }
 
-    public int checkBonusNumber(String input){
-        isInputEmpty(input);
-        return checkIntegerInput(input);
-    }
-
-    public List<Integer> checkWinningNumberInput(String input){
-        isInputEmpty(input);
+    public List<Integer> validateIntegers(String input){
+        validateEmptyOrNot(input);
         List<String> winningNumberInput = parseByDelimiter(input);
-        return changeIntoInteger(winningNumberInput);
+        return parseIntoIntegers(winningNumberInput);
     }
 
-    public int checkIntegerInput(String input){
-        return changeIntoInteger(input);
-    }
-
-    public void isInputEmpty(String input){
+    public void validateEmptyOrNot(String input){
         if (input==null || input.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NULL.getMessage());
         }
     }
 
-    public int changeIntoInteger(String input){
+    public int parseIntoIntegers(String input){
         try {
             return inputParser.parseIntoInteger(input);
         }catch (NumberFormatException e){
@@ -49,13 +38,11 @@ public class InputHandler {
         return inputParser.parseByDelimiter(input);
     }
 
-    public List<Integer> changeIntoInteger(List<String> input){
+    public List<Integer> parseIntoIntegers(List<String> input){
         try {
-            List<Integer> winningNumber = new ArrayList<>();
-            for (String value : input){
-                winningNumber.add(inputParser.parseIntoInteger(value));
-            }
-            return winningNumber;
+            return input.stream()
+                    .map(inputParser::parseIntoInteger)
+                    .toList();
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
