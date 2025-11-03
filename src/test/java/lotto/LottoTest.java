@@ -5,8 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import utils.ErrorMessage;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -22,5 +24,29 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("6개보다 적은 숫자일 때")
+    void lottoHasLessThanSixNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_SIZE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 숫자가 1-45 범위를 벗어난 경우")
+    void lottoNumberIsOutOfRange() {
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 30, 400, -5);
+        assertThatThrownBy(() -> new Lotto(invalidNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 오름차순 정렬")
+    void sortLottoNumbers() {
+        Lotto lotto = new Lotto(List.of(6, 3, 1, 5, 2, 4));
+        Lotto sorted = lotto.sorted();
+
+        assertThat(sorted.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }
