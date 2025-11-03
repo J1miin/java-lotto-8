@@ -20,10 +20,6 @@ public class Price {
         }
     }
 
-    public int calculateLottoCount() {
-        return price / LottoConstants.LOTTO_PRICE_UNIT;
-    }
-
     public int getPrice() {
         return price;
     }
