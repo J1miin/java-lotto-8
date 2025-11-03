@@ -20,8 +20,8 @@ public class LottoController {
     private final LottoMatcher lottoMatcher;
 
     public LottoController(InputHandler inputHandler, InputView inputView,
-                           OutputView outputView, LottoGenerator lottoGenerator, LottoMatcher lottoMatcher
-                           ) {
+                           OutputView outputView, LottoGenerator lottoGenerator,
+                           LottoMatcher lottoMatcher) {
         this.inputHandler = inputHandler;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -30,32 +30,30 @@ public class LottoController {
     }
 
     public void run() {
-        int price = askPrice();
+        Price price = askPrice();
         Lottos lottos = createLottos(price);
-
-        outputView.showTotalAmount(lottoGenerator.getTotalLottoAmount());
-        outputView.showLottos(lottos);
-
+        showPurchasedLottos(lottos);
         WinningLotto winningLotto = createWinningLotto();
-
-        LottoResult result = lottoMatcher.match(lottos.getLottos(), winningLotto);
-        outputView.showResult(result);
-        outputView.showProfitRate(result,price);
+        showResult(price, lottos, winningLotto);
     }
 
-    public int askPrice(){
+    private Price askPrice(){
         String input = inputView.askPrice();
-        int priceValue = inputHandler.checkPrice(input);
-        Price price = new Price(priceValue);
-        return price.getPrice();
+        int priceValue = inputHandler.validateInteger(input);
+        return new Price(priceValue);
     }
 
-    public Lottos createLottos(int price){
+    private Lottos createLottos(Price price){
         lottoGenerator.createLottoSet(price);
         return lottoGenerator.getLottos();
     }
 
-    public WinningLotto createWinningLotto(){
+    private void showPurchasedLottos(Lottos lottos) {
+        outputView.showTotalAmount(lottoGenerator.getTotalLottoAmount());
+        outputView.showLottos(lottos);
+    }
+
+    private WinningLotto createWinningLotto(){
         List<Integer> winningNumbers = askWinningNumber();
         Lotto winningLotto = new Lotto(winningNumbers);
 
@@ -65,11 +63,17 @@ public class LottoController {
 
     private List<Integer> askWinningNumber() {
         String input = inputView.askWinningNumber();
-        return inputHandler.checkWinningNumberInput(input);
+        return inputHandler.validateIntegers(input);
     }
 
     private int askBonusNumber() {
         String input = inputView.askBonusNumber();
-        return inputHandler.checkBonusNumber(input);
+        return inputHandler.validateInteger(input);
+    }
+
+    private void showResult(Price price, Lottos lottos, WinningLotto winningLotto) {
+        LottoResult result = lottoMatcher.match(lottos.getLottos(), winningLotto);
+        outputView.showResult(result);
+        outputView.showProfitRate(result,price.getPrice());
     }
 }
