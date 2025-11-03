@@ -1,6 +1,6 @@
 package domain;
 
-import dto.LottoConstants;
+import constants.LottoConstants;
 import utils.ErrorMessage;
 
 public class WinningLotto {

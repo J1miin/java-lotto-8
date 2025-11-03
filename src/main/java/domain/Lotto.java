@@ -1,6 +1,6 @@
 package domain;
 
-import dto.LottoConstants;
+import constants.LottoConstants;
 import java.util.List;
 import java.util.HashSet;
 import utils.ErrorMessage;

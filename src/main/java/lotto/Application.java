@@ -1,15 +1,12 @@
 package lotto;
 
 import controller.LottoController;
-import domain.Lotto;
 import domain.Lottos;
 import model.ConcreteLottoGenerator;
 import model.ConcreteRandomNumberExtractor;
-import model.LottoGenerator;
 import model.LottoMatcher;
 import utils.InputHandler;
 import utils.InputParser;
-import utils.LottoValidator;
 import view.InputView;
 import view.OutputView;
 

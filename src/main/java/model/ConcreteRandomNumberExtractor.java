@@ -1,7 +1,7 @@
 package model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import dto.LottoConstants;
+import constants.LottoConstants;
 import java.util.List;
 
 public class ConcreteRandomNumberExtractor implements RandomNumberExtractor {

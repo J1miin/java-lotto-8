@@ -2,7 +2,7 @@ package model;
 
 import domain.Lotto;
 import domain.Lottos;
-import dto.LottoConstants;
+import constants.LottoConstants;
 
 public class ConcreteLottoGenerator implements LottoGenerator {
     private int totalLottoAmount;

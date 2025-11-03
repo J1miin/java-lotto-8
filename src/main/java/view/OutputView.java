@@ -3,7 +3,7 @@ package view;
 import domain.Lotto;
 import domain.LottoResult;
 import domain.Lottos;
-import dto.Rank;
+import domain.Rank;
 
 public class OutputView {
     private static String ANSWER_THE_LOTTO_AMOUNT = "개를 구매했습니다.";

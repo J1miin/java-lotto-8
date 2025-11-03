@@ -1,6 +1,6 @@
 package utils;
 
-import dto.LottoConstants;
+import constants.LottoConstants;
 
 public enum ErrorMessage {
     INVALID_LOTTO_NUMBER_SIZE("로또 번호는 6개여야 합니다."),
