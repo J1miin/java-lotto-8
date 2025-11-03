@@ -6,12 +6,12 @@ import domain.Lottos;
 import domain.Rank;
 
 public class OutputView {
-    private static String ANSWER_THE_LOTTO_AMOUNT = "개를 구매했습니다.";
-    private static String SHOW_STATISTICS = "당첨 통계";
-    private static String DASH = "-";
-    private static Integer DASH_REPEAT_THREE = 3;
-    private static String WINNING_UNIT = "개";
-    private static String SPACE = " ";
+    private static final String ANSWER_THE_LOTTO_AMOUNT = "개를 구매했습니다.";
+    private static final String SHOW_STATISTICS = "당첨 통계";
+    private static final String DASH = "-";
+    private static final Integer DASH_REPEAT_THREE = 3;
+    private static final String WINNING_UNIT = "개";
+    private static final String SPACE = " ";
 
     public void showTotalAmount(int lottoAmount){
         System.out.println("\n" + lottoAmount + ANSWER_THE_LOTTO_AMOUNT);
