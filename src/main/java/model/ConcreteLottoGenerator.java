@@ -4,6 +4,7 @@ import domain.Lotto;
 import domain.Lottos;
 import constants.LottoConstants;
 import domain.Price;
+import java.util.stream.IntStream;
 
 public class ConcreteLottoGenerator implements LottoGenerator {
     private int totalLottoAmount;
@@ -18,11 +19,7 @@ public class ConcreteLottoGenerator implements LottoGenerator {
     @Override
     public void createLottoSet(Price price){
         findTotalLottoAmount(price);
-
-        for (int i = 0 ; i < totalLottoAmount; ++i){
-            Lotto lotto = createLottoNumber();
-            lottos.addLotto(lotto);
-        }
+        IntStream.range(0, totalLottoAmount).mapToObj(i -> createLottoNumber()).forEach(lottos::addLotto);
     }
 
     @Override
